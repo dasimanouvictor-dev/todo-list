@@ -20,12 +20,14 @@ form {
 }
 
 .formStyle{
-    padding:8px 0;
-    border-radius:15px;
+    padding:10px 0;
+    border-radius:10px;
     appearance:none;
     outline:none;
     -webkit-appearance:none;
-    border: 2px solid rgba(0,0,0,0.4)
+    border: 2px solid rgba(0,0,0,0.4);
+    font-size:0.8em;
+    margin-bottom: 20px;
 }
 
 .formStyle:focus {
@@ -33,7 +35,7 @@ form {
 }
 
 #userInput {
-    width:66%;
+    width:68%;
     padding-left:2%;
 
 }
@@ -50,4 +52,58 @@ form {
 
 #addInput:hover {
     background:#165824
+}
+
+.listButton {
+    display:flex;
+}
+
+.manipulatiionButon:first-child {
+    border-left:2px solid green;
+}
+
+.manipulatiionButon {
+    background:#fff;
+    color:green;
+    padding:7px 14px;
+    border:2px solid green;
+    border-left:none;
+    border-radius:6px;
+    margin-bottom: 20px;
+}
+
+.active {
+    background:green;
+    color:#fff;
+}
+
+.gestionDeList:first-child {
+    border-top:1.5px solid rgba(0,0,0,0.4);
+}
+
+.gestionDeList {
+    list-style:none;
+    border:1.5px solid rgba(0,0,0,0.4);
+    border-top:none;
+    padding:5px 10px;
+    border-radius:5px;
+    display:flex;
+    align-items: center;
+}
+
+.gestionDeList label {
+    padding-left:10px;
+}
+
+.boutonSupprimer {
+    margin-left:auto;
+    background: red;
+    color:#fff;
+    border: 2px solid red;
+    border-radius:3px;
+    height:25px;
+    width: 25px;
+    display:flex;
+    align-items:center;
+    justify-content:center;
 }
