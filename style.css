@@ -1,0 +1,53 @@
+* {
+    margin: 0;
+    padding:0;
+}
+
+body {
+    /* height:100vh; */
+    width:100%;
+}
+
+.main {
+    margin :10vh 0;
+    max-width: 75%;
+    margin-inline:auto;
+}
+
+form {
+    display: flex;
+    justify-content:space-between;
+}
+
+.formStyle{
+    padding:8px 0;
+    border-radius:15px;
+    appearance:none;
+    outline:none;
+    -webkit-appearance:none;
+    border: 2px solid rgba(0,0,0,0.4)
+}
+
+.formStyle:focus {
+    border:2px solid green;
+}
+
+#userInput {
+    width:66%;
+    padding-left:2%;
+
+}
+
+#addInput {
+    width:30%;
+    background:green;
+    color:#fff;
+    border: 2px solid green;
+    transition: background-color 0.3s ease;
+    
+
+}
+
+#addInput:hover {
+    background:#165824
+}
