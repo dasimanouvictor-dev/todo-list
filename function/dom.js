@@ -3,7 +3,7 @@ export function createElement(tagName, attribut={}) {
     
     for (const [name, value] of Object.entries(attribut)) {
         if(value !== false || value !== null) {
-            element.setAttribut(name,value)
+            element.setAttribute(name,value)
         }
     }
 

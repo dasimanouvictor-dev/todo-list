@@ -12,15 +12,15 @@ export class TodoList {
     /**
      * @param {Todo[]} todo 
      */
-    constructor(todos) {
-        this.#todos = todos
+    constructor(/*todos*/) {
+        // this.#todos = todos
     }
     
     appendTo(element) {
 
         element.innerHTML=`            
             <form>
-                <input type="text" class="formStyle" id="userInput" name="userInput" value="" placeholder="Entrez une tache a realiser">
+                <input required="" type="text" class="formStyle" id="userInput" name="userInput" value="" placeholder="Entrez une tache a realiser">
                 <button class="formStyle" id="addInput">Ajouter</button>
             </form>
             <div class="listButton">
@@ -30,26 +30,33 @@ export class TodoList {
             </div>
 
             <ul class="listGroup">
-                <li class="gestionDeList">
-                    <input type="checkbox" id="tache1" name="tache1">
-                    <label for="tache1">Laver mes habits</label>
-                    <button type="button"  class=" boutonSupprimer">
-                        <span class="material-symbols" data-symbole="delete"></span>
-                    </button>
-                </li>
-                <li class="gestionDeList">
-                    <input type="checkbox" id="tache2" name="tache2">
-                    <label for="tache2">Faire mes devoirs</label>
-                    <button type="button"  class="boutonSupprimer">
-                        <span class="material-symbols" data-symbole="delete"></span>
-                    </button>
-                </li>
             </ul>
         `
         this.#ListElement = element.querySelector('.listGroup')
         for (const todo of this.#todos) {
             const todoItem = new TodoListItem(todo)
-            this.#ListElement.append(todo)
+            this.#ListElement.append(todoItem.element)
+        }
+
+        element.querySelector('form').addEventListener('submit', (formEvent) => this.onSubmit(formEvent))
+    }
+
+    onSubmit(formEvent) {
+        formEvent.preventDefault()
+        const form = formEvent.currentTarget
+        const title = new FormData(form).get('userInput').toString().trim()
+
+        if (title === '') {
+            return
+        } else {
+            const todo = {
+                id: Date.now(),
+                title: title
+            }
+
+            const item = new TodoListItem(todo)
+            this.#ListElement.append(item.element)
+            form.reset()
         }
     }
 
@@ -64,7 +71,7 @@ class TodoListItem {
      */
     constructor(todo) {
 
-        const idTodo = `todo${todo.id}`,
+        const idTodo = `todo${todo.id}`
 
         const list = createElement('li', {
             class: 'gestionDeList'
@@ -90,14 +97,30 @@ class TodoListItem {
         })
 
         const span = createElement('span', {
-            class:'',
+            class:'material-symbols',
             'data-symbole': 'delete'
         })
         bouton.append(span)
         list.append(bouton)
+        bouton.addEventListener('click', (boutonEvent) => this.remove(boutonEvent))
+        checkbox.addEventListener('change', (checkboxEvent) => this.toogle(checkboxEvent.currentTarget))
     }
 
     get element() {
         return this.#element
     }
+
+    remove(boutonEvent) {
+        boutonEvent.preventDefault()
+        this.#element.remove()
+    }
+
+    toogle(checkbox) {
+        if(checkbox.checked) {
+            this.#element.classList.add('.is-completed')
+        } else {
+            this.#element.classList.remove('.is-completed')
+        }
+    }
+
 }
